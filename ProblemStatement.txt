@@ -1,0 +1,21 @@
+Summary : Create Order Management App with the below inputs.
+1.	Application should be designed in Angular and Node js endpoints
+2.	Overview:  application should contain 4 roles (Admin , Dealer, Shopkeeper, Representative ), here admin is company owned employee(manager)
+3.	Admin roles:
+a.	Admin should be able to add Dealers, Shopkeepers with shops, Representatives. 
+b.	Admin or manager should be able to add products with required parameters like product name, id, price etc..
+c.	Should have the all access which Dealers, shopkeepers and representative’s have.
+4.	Dealer: 
+a.	Should be able to perform bulk orders towards the company and able to track status, only the admin and Dealer can view and modify the status of the orders
+b.	Should able to track orders which are ordered by shopkeepers.
+5.	ShopKeeper : 
+a.	Able to order products towards Dealers, and able to track them. Here, order  can be tracked by dealers, shopkeepers and representatives.
+b.	Shopkeepers should have limited access, they can track the orders which they order towards deodars or they can track the orders provided by the representative for that shop.
+6.	Representatives: 
+a.	Able to add shopkeepers along with shops, 
+b.	Able to add his daily Visit details, 
+c.	Able to order products after visiting the shop.
+d.	Once order is placed it has to be confirmed by the shopkeeper.
+e.	Representative orders can be tracked or viewed by manager/Admin
+7.	Need to Save Product Images.
+I will be connecting with you all later today, on timeline for it, how it will be submitted evaluation criteria and if there is any question from you all.

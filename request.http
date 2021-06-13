@@ -1,0 +1,291 @@
+@url = http://localhost:3000
+
+// ADMIN END POINTS 
+
+#####
+// Admin Sign-up.
+POST {{url}}/admin/sign-up
+Content-Type: application/json
+
+{
+    "email":"admin@gmail.com",
+    "name": "Admin",
+    "password": "admin"
+}
+
+#####
+// Admin Login.
+POST {{url}}/admin/login
+Content-Type: application/json
+
+{
+    "email":"admin@gmail.com",
+    "password": "admin"
+}
+
+#######
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDI0MjhkZjZjYmRiNzQyOTg5MDNiMzkiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXIiOiJhZG1pbiIsImlhdCI6MTYxMzQ1ODM1Mn0.QVRvVwFQHKOOGWiYLwUvgLrYBHBZIzCN8f4kjJS-r1E
+
+#######
+//List of All Dealers Present Admin can see.
+GET {{url}}/admin/show-dealers
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+#######
+//List of All Shops Present Admin can see.
+GET {{url}}/admin/show-shops
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+#######
+//List of All Shops Representatives Admin can see.
+GET {{url}}/admin/show-representatives
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+#######
+
+//Admin can add a new dealer
+POST {{url}}/admin/add-Dealer
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name":"deal1",
+    "email":"newdealer@gmail.com",
+    "password": "dealer"
+}
+
+#######
+
+//Admin can add a new representative.
+POST {{url}}/admin/add-Representative
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name":"rep1",
+    "email":"rep1@gmail.com",
+    "password": "rep1"
+}
+
+#######
+//Admin can add a new shop with a representative assigned to it.(Shopkeeper Id has been passed in params)
+PUT {{url}}/admin/add-Shopkeeper/602b6f609e72f145a88e4674
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name":"shopkeeper1",
+    "shop_name":"New Shop",
+    "email":"shopkeeper_1@gmail.com",
+    "password": "shopkeeper_1"
+}
+
+########
+//Admin can add a new product with a dealer assigned to it.(Dealer id has been passed in params)
+PUT {{url}}/admin/add-Product/602b6f109e72f145a88e4673
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name":"new product",
+    "price": 10,
+    "type": "chips"
+}
+
+########
+//Admin can see all the orders made by dealer.
+GET {{url}}/admin/view-dealer-orders
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+########
+//Admin can modify the order of dealer.(Order id has been passed in params)
+PUT {{url}}/admin/modify-dealer-order/60241ae143a89d4300e076eb
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+#######
+//Admin can see all the orders made by representatives.
+GET {{url}}/admin/view-representative-orders
+Content-Type: application/json
+Authorization: Bearer {{token}}
+######
+
+// DEALER END POINTS : 
+
+// Dealer Sign-up.
+POST {{url}}/dealer/sign-up
+Content-Type: application/json
+
+{
+    "email":"dealer@gmail.com",
+    "name": "dealer",
+    "password": "dealer"
+}
+
+#####
+// Dealer Login.
+POST {{url}}/dealer/login
+Content-Type: application/json
+
+{
+    "email":"newdealer@gmail.com",
+    "password": "dealer"
+}
+
+#######
+@token1=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDJiNmYxMDllNzJmMTQ1YTg4ZTQ2NzMiLCJlbWFpbCI6Im5ld2RlYWxlckBnbWFpbC5jb20iLCJ1c2VyIjoiZGVhbGVyIiwiaWF0IjoxNjEzNDYwNTg3fQ.U26B6NDcwfom2Vo1Yr5QlZrwX2jLuZjbtAe7N90sPas
+
+#######
+//List of All products that the logged-in dealer have.
+GET {{url}}/dealer/products
+Content-Type: application/json
+Authorization: Bearer {{token1}}
+
+########
+//Dealer can add a new product to itself.
+POST {{url}}/dealer/add-product
+Content-Type: application/json
+Authorization: Bearer {{token1}}
+
+{
+    "name":"new product 2",
+    "price": 10,
+    "type": "chips"
+}
+
+########
+//Dealer can place a order to the company.(Product id has been passed in params)
+PUT {{url}}/dealer/place-order/602b71959e72f145a88e4677
+Content-Type: application/json
+Authorization: Bearer {{token1}}
+
+{
+    "quantity":77
+}
+
+#######
+//Dealer can see all the orders made by him to the company.
+GET {{url}}/dealer/my-all-orders
+Content-Type: application/json
+Authorization: Bearer {{token1}}
+
+########
+//Dealer can modify the order made by him to the company.(Order id has been passed in params)
+PUT {{url}}/dealer/modify-order/602b76c56e7fcf3a2cd8bce9
+Content-Type: application/json
+Authorization: Bearer {{token1}}
+
+#######
+//Dealer can see all the ACTIVE orders made by him to the company.
+GET {{url}}/dealer/my-active-order
+Content-Type: application/json
+Authorization: Bearer {{token1}}
+
+#######
+//Dealer can see all the ACTIVE orders made by him to the company.
+GET {{url}}/dealer/all-shopkeepers-order
+Content-Type: application/json
+Authorization: Bearer {{token1}}
+
+#######
+//Dealer can approve the order made by the shopkeeper to him.(Order id has been passed in params)
+PUT {{url}}/dealer/approve-shopkeeper-order/602b7cf5f8692e185cba8000
+Content-Type: application/json
+Authorization: Bearer {{token1}}
+
+#######
+
+// SHOPKEEPER END-POINTS
+
+#######
+// Shopkeeper Login.
+POST {{url}}/shopkeeper/login
+Content-Type: application/json
+
+{
+    "email":"shopkeeper_1@gmail.com",
+    "password": "shopkeeper_1"
+}
+#######
+@token2= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDJiN2M1MGY4NjkyZTE4NWNiYTdmZmUiLCJlbWFpbCI6InNob3BrZWVwZXJfMUBnbWFpbC5jb20iLCJ1c2VyIjoic2hvcGtlZXBlciIsImlhdCI6MTYxMzQ2MjYyOH0.OmFFLwwWfKEasaYT9gRmoctEA6kGE3dS00fFVEBdmvg
+#######
+
+//Shopkeeper can see all the orders made by the representative assigned to him.
+GET {{url}}/shopkeeper/all-orders
+Content-Type: application/json
+Authorization: Bearer {{token2}}
+
+#######
+//Shopkeeper can approve the order made by the representative on the behalf of him.(Order id has been passed in params)
+PUT {{url}}/shopkeeper/approve-order/602b7cf5f8692e185cba8000
+Content-Type: application/json
+Authorization: Bearer {{token2}}
+
+#######
+//Shopkeeper can track the order made by the representative on the behalf of him and is approved by him.(Order id has been passed in params)
+PUT {{url}}/shopkeeper/track-order/602b7cf5f8692e185cba8000
+Content-Type: application/json
+Authorization: Bearer {{token2}}
+
+######
+
+// REPRESENTATIVES END-POINTS
+
+#######
+// Representative Login.
+POST {{url}}/representative/login
+Content-Type: application/json
+
+{
+    "email":"rep1@gmail.com",
+    "password": "rep1"
+}
+#######
+@token3= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDI0MGE3YjU3NDNkYjQ1OTRkNzBjZTEiLCJlbWFpbCI6InJlcDFAZ21haWwuY29tIiwidXNlciI6InJlcHJlc2VudGF0aXZlIiwiaWF0IjoxNjEzNDYxOTMwfQ.s3tYZG4-EsUitvTqhZQ7_mCGedkcyJ2QryiIVA10MYw
+#######
+
+//Representative can see all the products available.
+GET {{url}}/representative/products
+Content-Type: application/json
+Authorization: Bearer {{token3}}
+
+#######
+
+//Representative can add his visits.
+POST {{url}}/representative/add-visit
+Content-Type: application/json
+Authorization: Bearer {{token3}}
+
+{
+    "date" : "10-10-2021",
+    "location": "All in one shop",
+    "remarks":"good shopkeeper"
+}
+
+#######
+//Representative can add shopkeeper to itself.
+POST {{url}}/representative/add-shopkeeper
+Content-Type: application/json
+Authorization: Bearer {{token3}}
+
+{
+    "name":"shopkeeper2",
+    "shop_name":"All in one",
+    "email":"shopkeeper_2@gmail.com",
+    "password": "shopkeeper_2"
+}
+#######
+//Representative can make order on the behalf of shopkeeper he is assigned to.(Product Id passed in params).
+PUT {{url}}/representative/add-order/602b71959e72f145a88e4677
+Content-Type: application/json
+Authorization: Bearer {{token3}}
+
+{
+    "quantity": 70
+}
+
+#############
